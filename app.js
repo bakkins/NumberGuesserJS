@@ -4,6 +4,7 @@ let guessCounter = 0;
 const numberInput = document.getElementById("number");
 const submitButton = document.getElementById("submit");
 const responseText = document.getElementById("response");
+const historyList = document.querySelector("ul");
 
 submitButton.addEventListener("click", handleClick)
 
@@ -26,7 +27,11 @@ function handleClick() {
             responseText.textContent = "Too low! Try again.";
             break;
         case numberGuess == numberToGuess:
-            responseText.textContent = `Congratulations! You guessed the number in ${guessCounter} attempts`; 
+            responseText.textContent = `Congratulations! You guessed the number in ${guessCounter} attempts`;
+            const guessHistory = document.createElement("li");
+            guessHistory.textContent = `Number to guess was ${numberToGuess}, Attempts : ${guessCounter}`;
+            historyList.appendChild(guessHistory);
+            numberToGuess = Math.floor(Math.random() * 100) + 1; 
             break;
     }
 
